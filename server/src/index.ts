@@ -37,14 +37,6 @@ app.use(session({
 
 initEndpoints(app, db);
 
-app.get("/", (req:Request, res:Response):void => {
-    res.send("Hello from server!")
-});
-
-app.get("/test", (req:Request, res:Response):void => {
-    res.json("Hello to client from server!");
-});
-
 app.listen(PORT, ():void => {
     console.log(`Server running @ https://localhost:${PORT}`);
 });
