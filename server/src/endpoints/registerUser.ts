@@ -23,13 +23,16 @@ export default function registerUser(app: Application, db: Database){
             if(response === null){
                 //If username is not taken, register new user
                 registerUserFn(db, username, password);
+                console.log(`Registered user ${username}`);
                 res.json(true);
             }else{
                 //Return false if username is taken
+                console.error("Failed registering user");
                 res.json(false);
             }
         })
         .catch(err => {
+            console.error("Failed registering user");
             console.error(err);
             res.json(false);
         })
