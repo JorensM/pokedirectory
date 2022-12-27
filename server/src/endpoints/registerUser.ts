@@ -1,10 +1,10 @@
-
-//Core
-import { sqlite3 } from "sqlite3";
-
 //Types
+import { Database } from "sqlite3";
 import { Application } from "express";
 
-export default function registerUser(app: Application){
+//Functions
+import { queryDB } from "fn/db";
 
+export default function registerUser(app: Application, db: Database){
+    
 }
