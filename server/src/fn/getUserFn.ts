@@ -2,7 +2,7 @@
 
 //Types
 import { Database } from "sqlite3";
-import User from "types/User";
+import User from "../types/User";
 
 
 export default function getUserFn( db: Database, username: string | null = null){

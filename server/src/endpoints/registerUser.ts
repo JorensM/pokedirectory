@@ -3,7 +3,6 @@ import { Database } from "sqlite3";
 import { Application, Request, Response } from "express";
 
 //Functions
-import { queryDB } from "fn/db";
 import getUserFn from "../fn/getUserFn";
 import registerUserFn from "../fn/registerUserFn";
 

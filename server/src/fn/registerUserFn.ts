@@ -1,3 +1,5 @@
+//server/src/fn/registerUserFn.ts
+
 import { Database } from "sqlite3";
 
 export default function registerUserFn(db: Database, username: string, password: string){
