@@ -8,10 +8,10 @@ import User from "types/User";
 //Functions
 import { queryDB } from "./db";
 
-export default function getUserFn(username: string | null = null, db: Database){
+export default function getUserFn( db: Database, username: string | null = null){
     return new Promise((resolve, reject) => {
         if(username !== null){
-            db.all(`SELECT * FROM users WHERE username=${username}`, (err, result) => {
+            db.all(`SELECT * FROM users WHERE username="${username}"`, (err, result) => {
                 if(err){
                     reject(err);
                 }
@@ -32,7 +32,7 @@ export default function getUserFn(username: string | null = null, db: Database){
                 }
             })
         }else{
-            
+
         }
     })
     
