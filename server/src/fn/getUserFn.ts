@@ -1,12 +1,9 @@
 //server/src/fn/getUserFn.ts
 
 //Types
-import { rejects } from "assert";
 import { Database } from "sqlite3";
 import User from "types/User";
 
-//Functions
-import { queryDB } from "./db";
 
 export default function getUserFn( db: Database, username: string | null = null){
     return new Promise((resolve, reject) => {
@@ -23,7 +20,6 @@ export default function getUserFn( db: Database, username: string | null = null)
                             username: username,
                             favorites: favorites
                         }
-
                         resolve(user);
                     }
                     else{
@@ -31,9 +27,6 @@ export default function getUserFn( db: Database, username: string | null = null)
                     }
                 }
             })
-        }else{
-
         }
     })
-    
 }
