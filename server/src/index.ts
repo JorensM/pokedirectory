@@ -35,7 +35,7 @@ let db = new Database("db/main.db", (err) => {
     }
 });
 
-//This function is to support request body parsing.
+//This function enables support for request body parsing.
 app.use(express.json());
 
 //This initializes session storage

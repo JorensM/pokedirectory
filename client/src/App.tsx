@@ -1,22 +1,42 @@
 //client/src/App.tsx
 
-import { useEffect, useState } from "react";
+//Core
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+
+//Router object
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>Homepage</div>
+  },
+  {
+    path: "/register",
+    element: <div>Register page</div>
+  },
+  {
+    path: "/login",
+    element: <div>Login page</div>
+  },
+  {
+    path: "/search",
+    element: <div>Search page</div>
+  },
+  {
+    path: "/pokemon",
+    element: <div>Pokemon page</div>
+  },
+  {
+    path: "/favorites",
+    element: <div>Favorites page</div>
+  },
+]);
+
+//Main app component
 function App() {
 
-  const [info, setInfo] = useState("");
-
-  useEffect(() => {
-    fetch("test")
-    .then(res => res.json())
-    .then(data => setInfo(data))
-    .catch(err => setInfo(err))
-  }, []);
-
   return (
-    <div>
-      {info}
-    </div>
+    <RouterProvider router={router} />
   );
 }
 

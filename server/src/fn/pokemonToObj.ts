@@ -6,6 +6,7 @@ import Pokemon from "../types/Pokemon";
 import { Database } from "sqlite3";
 import getPokemonViewsFavorites from "./getPokemonViewsFavorites";
 
+//Convert PokeAPI data to Pokemon object
 export default function pokemonToObj(db: Database, data: any){
     const stats: Stats = {
         hp: data.stats[0].base_stat,
@@ -40,6 +41,4 @@ export default function pokemonToObj(db: Database, data: any){
             reject(err);
         })
     })
-
-   
 }

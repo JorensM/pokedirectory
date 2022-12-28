@@ -1,5 +1,6 @@
 //server/src/fn/getPokemonViewsFavorites.ts
 
+//Types
 import { Database } from "sqlite3";
 
 //Retrive views count and favorites count for a Pokemon by id
