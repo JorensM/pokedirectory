@@ -11,9 +11,12 @@ import "./Header.css";
 import getUser from "../../fn/getUser";
 import NavOption from "../NavOption/NavOption";
 
+//Types
+import User from "../../types/User";
+
 export default function Header(){
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<User | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
 
     const navigate = useNavigate();
@@ -56,7 +59,11 @@ export default function Header(){
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(location.pathname);
-        navigate("/search", {state: {term: searchTerm}})
+        // if(location.pathname === "/search"){
+        //     navigate(0, {state: {term: searchTerm}})
+        // }
+        navigate("/search", {state: {term: searchTerm}});
+        window.location.reload();
     }
 
     const handleSearchTerm = (e: React.FormEvent<HTMLInputElement>) => {
@@ -75,6 +82,7 @@ export default function Header(){
             <div className="HeaderRight">
                 {user ? 
                     [  
+                        <span>Welcome back, {user.username}</span>,
                         <NavOption color="black" label="Favorites" onClick={handleFavorites} key="1"/>,
                         <NavOption color="red" label="Log out" onClick={handleLogout} key="2"/>
                     ]

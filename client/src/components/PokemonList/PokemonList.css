@@ -1,0 +1,27 @@
+/* client/src/components/PokemonList/PokemonList.css */
+
+.PokemonList{
+    display: flex;
+    flex-direction: column;
+}
+
+.PokemonListImg{
+    border: 1px solid black;
+    border-radius: 100px;
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.PokemonListItem{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    margin: 5px 0px;
+    border-radius: 100px;
+}
+
+.PokemonListItem:hover{
+    background-color: #d9d5bd;
+    cursor: pointer;
+}

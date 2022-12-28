@@ -33,6 +33,7 @@ export default function pokemonToObj(db: Database, data: any){
         .then((result: any) => {
             const pokemon:Pokemon = {
                 id: data.id,
+                img: data.sprites.front_default,
                 name: data.name,
                 stats: stats,
                 abilities: abilities,
