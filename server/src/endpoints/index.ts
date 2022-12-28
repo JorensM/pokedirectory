@@ -12,6 +12,7 @@ import logoutUser from "./logoutUser";
 import getPokemon from "./getPokemon";
 import getMostFavorited from "./getMostFavorited";
 
+//Initialize endpoints
 export default function initEndpoints(app: Application, db: Database){
     registerUser(app, db);
     loginUser(app, db);
