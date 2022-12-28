@@ -14,6 +14,7 @@ export default function registerUser(app: Application, db: Database){
         const username = req.body.username;
         const password = req.body.password;
 
+        console.log(`Registering user ${username}`);
         //Check if username is taken, and register if not
         getUserFn(db, username)
         .then(response => {

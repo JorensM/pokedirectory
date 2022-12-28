@@ -1,0 +1,40 @@
+.UserForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.UserForm > input{
+    height: 40px;
+    width: 240px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    border: none;
+  
+    background-color: #EBE5C4;
+    color: #6C6C6C;
+}
+
+.UserForm > button{
+    height: 40px;
+    width: 140px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    border: none;
+  
+    background-color: #EBE5C4;
+    margin-left: auto;
+
+    color: #6C6C6C;
+
+    cursor: pointer;
+}
+
+.UserForm > button:hover{
+    background-color: #bebba6;
+}
+
+.Error{
+    color: red;
+}
