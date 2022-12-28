@@ -2,7 +2,8 @@
 
 //Style
 import { resolveSoa } from "dns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getUser from "../../fn/getUser";
 import "./UserForm.css";
 
 //Props type
@@ -15,6 +16,18 @@ export default function UserForm(props: UserFormProps){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        getUser()
+        .then((user: any) => {
+            setUser(user);
+        })
+        .catch(err => {
+            console.error("Error getting user: ");
+            console.error(err);
+        });
+    })
 
     const handlePassword = (e: React.FormEvent<HTMLInputElement>) => {
         setPassword(e.currentTarget.value);
@@ -39,7 +52,7 @@ export default function UserForm(props: UserFormProps){
             .then(res => res.json())
             .then(data => {
                 if(data === true){
-                    setErrorMessage("Registered!");
+                    //setErrorMessage("Registered!");
                 }
                 else{
                     setErrorMessage("Error");
@@ -52,12 +65,36 @@ export default function UserForm(props: UserFormProps){
             })
         }
         else{
-            
+            fetch("loginUser", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data === true){
+                    setErrorMessage("logged in!");
+                }
+                else{
+                    setErrorMessage("Error");
+                }
+            })
+            .catch(err => {
+                console.error("Error calling the registerUser endpoint: ");
+                console.error(err);
+                setErrorMessage("Error calling endpoint");
+            })
         }
     }
 
     return (
         <form>
+            {!user ? 
             <div className="UserForm">
                 <input type="text" value={username} onChange={handleUsername} placeholder="Username"/>
                 <br/>
@@ -66,6 +103,9 @@ export default function UserForm(props: UserFormProps){
                 <span className="Error">{errorMessage}</span>
                 <button type="button" onClick={handleSubmit}>{props.isLogin ? "Login" : "Register" }</button>
             </div>
+            :
+            <h2>You are logged in!</h2>
+            }
             
         </form>
     )
