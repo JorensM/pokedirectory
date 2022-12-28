@@ -1,10 +1,14 @@
 //client/src/components/Page/Page.tsx
 
-//Style
-import { resolveSoa } from "dns";
+//Core
 import { useEffect, useState } from "react";
-import getUser from "../../fn/getUser";
+import { useNavigate } from "react-router-dom";
+
+//Style
 import "./UserForm.css";
+
+//Functions
+import getUser from "../../fn/getUser";
 
 //Props type
 type UserFormProps = {
@@ -17,6 +21,8 @@ export default function UserForm(props: UserFormProps){
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [user, setUser] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getUser()
@@ -53,6 +59,7 @@ export default function UserForm(props: UserFormProps){
             .then(data => {
                 if(data === true){
                     //setErrorMessage("Registered!");
+                    navigate("/login");
                 }
                 else{
                     setErrorMessage("Error");
@@ -79,6 +86,7 @@ export default function UserForm(props: UserFormProps){
             .then(data => {
                 if(data === true){
                     setErrorMessage("logged in!");
+                    window.location.reload();
                 }
                 else{
                     setErrorMessage("Error");

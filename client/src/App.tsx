@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 
 //Router object
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/search",
-    element: <div>Search page</div>
+    element: <SearchPage/>
   },
   {
     path: "/pokemon",

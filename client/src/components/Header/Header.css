@@ -8,7 +8,7 @@
 }
 
 .HeaderLeft{
-    width: 20%;
+    width: fit-content;
     height: 100%;
     font-size: 28px;
     display: flex;
@@ -19,6 +19,19 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 80%;
+    flex-grow: 1;
     height: 100%;
+}
+
+.Header input{
+    height: 40px;
+    width: 280px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 100px;
+    border: none;
+    margin-left: 15px;
+  
+    background-color: #EBE5C4;
+    color: #6C6C6C;
 }
