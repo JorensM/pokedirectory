@@ -7,6 +7,7 @@ export default interface Pokemon {
     name: string,
     stats: Stats,
     abilities: Array<string>,
+    types: Array<string>,
     views: number,
     favorites: number
 }

@@ -1,0 +1,17 @@
+.Page{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.PageTop{
+    height: 80px;
+    padding: 0px 30px;
+    box-sizing: border-box;
+}
+
+.PageContent{
+    /* background-color: gray; */
+    flex-grow: 1;
+}

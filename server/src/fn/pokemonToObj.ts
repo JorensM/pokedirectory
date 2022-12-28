@@ -18,9 +18,14 @@ export default function pokemonToObj(db: Database, data: any){
     }
 
     let abilities: Array<string> = [];
+    let types: Array<string> = [];
 
     data.abilities.forEach((e: any) => {
         abilities.push(e.ability.name);
+    })
+
+    data.types.forEach((e: any) => {
+        types.push(e.type.name)
     })
 
     return new Promise((resolve, reject) => {
@@ -31,6 +36,7 @@ export default function pokemonToObj(db: Database, data: any){
                 name: data.name,
                 stats: stats,
                 abilities: abilities,
+                types: types,
                 views: result.views,
                 favorites: result.favorites
             }

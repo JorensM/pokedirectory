@@ -3,15 +3,23 @@
 //Style
 import "./Page.css";
 
-export default function Page(){
+//Components
+import Header from "../Header/Header";
+
+//Props type
+type PageProps = {
+    children: JSX.Element | string
+}
+
+export default function Page(props: PageProps){
 
     return (
         <div className="Page">
             <div className="PageTop">
-                Pagetop
+                <Header />
             </div>
-            <div className="PageBottom">
-                Pagebot
+            <div className="PageContent">
+                {props.children}
             </div>
         </div>
     )
