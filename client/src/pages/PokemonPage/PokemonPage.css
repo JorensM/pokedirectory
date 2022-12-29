@@ -31,3 +31,12 @@ h4{
     /* line-height: 0px; */
     margin: 10px 0px;
 }
+
+.FavoriteButton{
+    cursor: pointer;
+    color: dimgray
+}
+
+.FavoriteButton:hover{
+    color: black;
+}

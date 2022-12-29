@@ -18,31 +18,24 @@ export default function SearchPage () {
     const term = location.state.term;
 
     const [pokemon, setPokemon] = useState<Array<Pokemon>>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch(`getPokemon?term=${term}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             if(data){
                 
                 (async () =>{
                     let newPokemon: Array<Pokemon> = [];
                     for(const entry of data){
                         const id = entry.url.slice(0, -1).split("/").pop();
-                        console.log(id);
                         const response = await fetch(`getPokemon?id=${id}`);
-                        //console.log(await response.json());
                         newPokemon.push(await response.json());
                     }
                     setPokemon(newPokemon);
-
-                    // data.forEach(async (entry: any) => {
-                    //     const id = entry.url.slice(0, -1).split("/").pop();
-                    //     console.log(id);
-                    //     const response = await fetch(`getPokemon?id=${id}`);
-                    //     console.log(await response.json());
-                    // })
+                    setIsLoading(false);
                 })();
             }
         })
@@ -59,6 +52,7 @@ export default function SearchPage () {
                 <br/>
                 <br/>
                 <br/>
+                {isLoading && <h3>Loading...</h3>}
                 <PokemonList pokemon={pokemon} />
             </div>
         </Page>

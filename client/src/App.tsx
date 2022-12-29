@@ -2,6 +2,7 @@
 
 //Core
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
 //Pages
 import HomePage from "./pages/HomePage/HomePage";
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/favorites",
-    element: <div>Favorites page</div>
+    element: <FavoritesPage/>
   },
 ]);
 

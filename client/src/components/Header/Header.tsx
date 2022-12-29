@@ -2,7 +2,7 @@
 
 //Core
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //Style
 import "./Header.css";
@@ -58,10 +58,6 @@ export default function Header(){
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(location.pathname);
-        // if(location.pathname === "/search"){
-        //     navigate(0, {state: {term: searchTerm}})
-        // }
         navigate("/search", {state: {term: searchTerm}});
         window.location.reload();
     }
@@ -73,8 +69,8 @@ export default function Header(){
     return (
         <div className="Header">
             <div className="HeaderLeft">
-                PokeDirectory
-                <form onSubmit={handleSearch}>
+                <Link to="/">PokeDirectory</Link>
+                <form onSubmit={handleSearch} key="form">
                     <input type="text" placeholder="Search" onChange={handleSearchTerm}></input>
                 </form>
                 
@@ -82,7 +78,7 @@ export default function Header(){
             <div className="HeaderRight">
                 {user ? 
                     [  
-                        <span>Welcome back, {user.username}</span>,
+                        <span key="aaa">Welcome back, {user.username}</span>,
                         <NavOption color="black" label="Favorites" onClick={handleFavorites} key="1"/>,
                         <NavOption color="red" label="Log out" onClick={handleLogout} key="2"/>
                     ]
