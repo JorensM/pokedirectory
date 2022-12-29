@@ -24,6 +24,29 @@ export default function PokemonPage () {
 
     useEffect(() => {
         const id = location.state.id;
+
+        //Call incrementViews endpoint to increment the current Pokemon's
+        //view count each time the page is loaded.
+        fetch("incrementViews", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+
+        })
+        //Handle errors
+        .catch(err => {
+            console.error("Error calling the incrementViews endpoint: ");
+            console.error(err);
+        });
+
+
         fetch(`getPokemon?id=${id}`)
         .then(res => res.json())
         .then(data => {

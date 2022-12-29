@@ -1,0 +1,17 @@
+/* client/src/pages/HomePage/HomePage.css */
+
+.HomePage{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+.Column{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -54,7 +54,7 @@ export default function setFavorite(app: Application, db :Database){
                     //Convert favorites array to string
                     const favs_str = favorites.join(",")
                     
-                    //Update favorites data in database
+                    //Update user's favorites data in database
                     db.run(`UPDATE users SET favorites="${favs_str}" WHERE username="${username}"`, err => {
                         //Error handling
                         if(err){
@@ -62,9 +62,61 @@ export default function setFavorite(app: Application, db :Database){
                             console.error(err);
                         }else{
                             //Return true as response.
-                            res.json(true);
+                            //res.json(true);
                         }
                     })
+
+                    //Set most_favorited Pokemon's value
+                    db.get(`SELECT * FROM most_favorited WHERE id=${id}`, (err, result) => {
+                        //Error handling
+                        if(err){
+                            console.error("Error getting most_favorited pokemon: ");
+                            console.error(err);
+                            //Return false as response
+                            res.json(false);
+                        }else{
+                            //Check if Pokemon has an entry in the most_favorited table
+                            if(result){
+                                //If Pokemon has entry, increment or decrement favorites count
+                                let add = 1;
+                                if(!favorite){
+                                    add = -1;
+                                }
+                                const favorites = result.favorites + add;
+                                //Update Pokemon's entry in the DB
+                                db.run(`UPDATE most_favorited SET favorites=${favorites} WHERE id=${id}`, err => {
+                                    //Handle error
+                                    if(err){
+                                        console.error("Error updating most_favorited DB: ");
+                                        console.error(err);
+                                        //Return false as response
+                                        res.json(false);
+                                    }
+                                    else{
+                                        //Return true as response
+                                        res.json(true);
+                                    }
+                                });
+                            }else{
+                                //If Pokemon doesn't have an entry, insert a new entry in the most_favorited table for that Pokemon
+                                //and set the favorites count to 1
+                                db.run(`INSERT INTO most_favorited (id, favorites) VALUES (${id}, 1)`, err => {
+                                    //Handle error
+                                    if(err){
+                                        console.error("Error inserting into most_favorited DB: ");
+                                        console.error(err);
+                                        //Return false as response
+                                        res.json(false);
+                                    }
+                                    else{
+                                        //Return true as response
+                                        res.json(true);
+                                    }
+                                })
+                            }
+                        }
+                    })
+                    
                 }else{
                     //Return false as response if no user was found
                     res.json(false);
